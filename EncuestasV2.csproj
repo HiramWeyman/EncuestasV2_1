@@ -298,6 +298,21 @@
     <Content Include="Views\Encuesta3\Index7.cshtml" />
     <Content Include="Views\Encuesta3\Index8.cshtml" />
     <Content Include="Views\Encuesta3\Index9.cshtml" />
+    <Content Include="Views\Encuesta3\Index12.cshtml" />
+    <Content Include="Views\Encuesta3\Index13.cshtml" />
+    <Content Include="Views\Encuesta3\Index14.cshtml" />
+    <Content Include="Views\Encuesta3\Index15.cshtml" />
+    <Content Include="Views\Encuesta3\Index16.cshtml" />
+    <Content Include="Views\Encuesta3\Index17.cshtml" />
+    <Content Include="Views\Encuesta3\Index18.cshtml" />
+    <Content Include="Views\Encuesta3\Index19.cshtml" />
+    <Content Include="Views\Encuesta3\Index20.cshtml" />
+    <Content Include="Views\Encuesta3\Index21.cshtml" />
+    <Content Include="Views\Encuesta3\Index22.cshtml" />
+    <Content Include="Views\Encuesta3\Index23.cshtml" />
+    <Content Include="Views\Encuesta3\Index24.cshtml" />
+    <Content Include="Views\Encuesta3\Index25.cshtml" />
+    <Content Include="Views\Encuesta3\Index26.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
