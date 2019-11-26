@@ -256,6 +256,7 @@ namespace EncuestasV2.Controllers
             llenarExpLab();
         }
         // GET: Admin
+        [AccederAdmin]
         public ActionResult Index()
         {
             return View();

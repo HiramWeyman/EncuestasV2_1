@@ -34,9 +34,8 @@ namespace EncuestasV2.Models
         public string denc_valor_3 { get; set; }
         public string denc_valor_4 { get; set; }
         public string denc_valor_5 { get; set; }
-
-        public int denc_parte { get; set; }
-
+        public Nullable<int> denc_parte { get; set; }
+    
         public virtual encuesta_encuesta encuesta_encuesta { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<encuesta_resultados> encuesta_resultados { get; set; }

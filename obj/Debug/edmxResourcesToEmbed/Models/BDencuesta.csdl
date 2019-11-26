@@ -200,6 +200,7 @@
     <Property Name="usua_tiempo_puesto" Type="Int32" />
     <Property Name="usua_exp_laboral" Type="Int32" />
     <NavigationProperty Name="encuesta_resultados" Relationship="Self.FK_encuesta_resultados_encuesta_usuarios" FromRole="encuesta_usuarios" ToRole="encuesta_resultados" />
+    <Property Name="usua_presento" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
   </EntityType>
   <Association Name="FK_encuesta_det_encuesta_encuesta_encuesta">
     <End Role="encuesta_encuesta" Type="Self.encuesta_encuesta" Multiplicity="0..1" />

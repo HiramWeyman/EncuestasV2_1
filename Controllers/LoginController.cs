@@ -61,8 +61,10 @@ namespace EncuestasV2.Controllers
                         mensaje = "Usuario o contraseña Incorrecto";
                     }
                     else {
-                        Session["Usuario"] = db.encuesta_usuarios.Where(p => p.usua_n_usuario == nombre_usuario
-                                         && p.usua_p_usuario == contraCifrada);
+                        string usuario = db.Database.SqlQuery<string>("Select usua_n_usuario from encuesta_usuarios where usua_n_usuario=@usuario and usua_p_usuario=@password", new SqlParameter("@usuario", nombre_usuario), new SqlParameter("@password", contraCifrada))
+                      .FirstOrDefault();
+                        Session["Usuario"] = usuario;
+                        Console.WriteLine(usuario);
                     }
 
                 }

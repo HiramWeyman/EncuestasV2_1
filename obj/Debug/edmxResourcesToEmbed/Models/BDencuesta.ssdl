@@ -190,6 +190,7 @@
     <Property Name="usua_rotacion_turno" Type="int" />
     <Property Name="usua_tiempo_puesto" Type="int" />
     <Property Name="usua_exp_laboral" Type="int" />
+    <Property Name="usua_presento" Type="char" MaxLength="3" />
   </EntityType>
   <Association Name="FK_encuesta_det_encuesta_encuesta_encuesta">
     <End Role="encuesta_encuesta" Type="Self.encuesta_encuesta" Multiplicity="0..1" />

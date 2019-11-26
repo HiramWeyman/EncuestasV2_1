@@ -195,6 +195,7 @@
           <Property Name="usua_rotacion_turno" Type="int" />
           <Property Name="usua_tiempo_puesto" Type="int" />
           <Property Name="usua_exp_laboral" Type="int" />
+          <Property Name="usua_presento" Type="char" MaxLength="3" />
         </EntityType>
         <Association Name="FK_encuesta_det_encuesta_encuesta_encuesta">
           <End Role="encuesta_encuesta" Type="Self.encuesta_encuesta" Multiplicity="0..1" />
@@ -500,6 +501,7 @@
           <Property Name="usua_tiempo_puesto" Type="Int32" />
           <Property Name="usua_exp_laboral" Type="Int32" />
           <NavigationProperty Name="encuesta_resultados" Relationship="Self.FK_encuesta_resultados_encuesta_usuarios" FromRole="encuesta_usuarios" ToRole="encuesta_resultados" />
+          <Property Name="usua_presento" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
         </EntityType>
         <Association Name="FK_encuesta_det_encuesta_encuesta_encuesta">
           <End Role="encuesta_encuesta" Type="Self.encuesta_encuesta" Multiplicity="0..1" />
@@ -782,6 +784,7 @@
           <EntitySetMapping Name="encuesta_usuarios">
             <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_usuarios">
               <MappingFragment StoreEntitySet="encuesta_usuarios">
+                <ScalarProperty Name="usua_presento" ColumnName="usua_presento" />
                 <ScalarProperty Name="usua_id" ColumnName="usua_id" />
                 <ScalarProperty Name="usua_nombre" ColumnName="usua_nombre" />
                 <ScalarProperty Name="usua_empresa" ColumnName="usua_empresa" />

@@ -110,6 +110,12 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\empreasarios3.jpg" />
+    <Content Include="Content\images\empresarios1.jpg" />
+    <Content Include="Content\images\empresarios2.jpg" />
+    <Content Include="Content\images\empresarios3.jpg" />
+    <Content Include="Content\images\platzi-logo.png" />
+    <Content Include="Content\index.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\bootstrap.min.css.map" />
@@ -125,6 +131,7 @@
     <Content Include="Models\BDencuesta.edmx.diagram">
       <DependentUpon>BDencuesta.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\images\logoPlatzi.webp" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="Models\BDencuesta.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

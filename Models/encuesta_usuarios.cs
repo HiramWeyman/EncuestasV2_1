@@ -50,6 +50,7 @@ namespace EncuestasV2.Models
         public Nullable<int> usua_rotacion_turno { get; set; }
         public Nullable<int> usua_tiempo_puesto { get; set; }
         public Nullable<int> usua_exp_laboral { get; set; }
+        public string usua_presento { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<encuesta_resultados> encuesta_resultados { get; set; }

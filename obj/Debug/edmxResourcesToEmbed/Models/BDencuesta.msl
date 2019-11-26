@@ -176,6 +176,7 @@
     <EntitySetMapping Name="encuesta_usuarios">
       <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_usuarios">
         <MappingFragment StoreEntitySet="encuesta_usuarios">
+          <ScalarProperty Name="usua_presento" ColumnName="usua_presento" />
           <ScalarProperty Name="usua_id" ColumnName="usua_id" />
           <ScalarProperty Name="usua_nombre" ColumnName="usua_nombre" />
           <ScalarProperty Name="usua_empresa" ColumnName="usua_empresa" />
