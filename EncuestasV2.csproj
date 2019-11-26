@@ -320,6 +320,7 @@
     <Content Include="Views\Encuesta3\Index24.cshtml" />
     <Content Include="Views\Encuesta3\Index25.cshtml" />
     <Content Include="Views\Encuesta3\Index26.cshtml" />
+    <Content Include="Views\Encuesta3\Index27.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

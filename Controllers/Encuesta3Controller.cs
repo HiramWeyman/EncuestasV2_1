@@ -2759,7 +2759,7 @@ namespace EncuestasV2.Controllers
                     if (res == 1)
                     {
 
-                        return Content("<script language='javascript' type='text/javascript'>alert('Gracias por contestar la encuesta.');window.location = '/Admin/CatalogoEmpresa';</script>");
+                        return Content("<script language='javascript' type='text/javascript'>alert('Gracias por contestar la encuesta.');window.location = '/Encuesta3/gracias?user=" + Usuario + " ';</script>");
 
                     }
                     else
@@ -2771,6 +2771,49 @@ namespace EncuestasV2.Controllers
 
                 }
             }
+
+        }
+
+        public ActionResult Index27(string user)
+        {
+            if (user != null)
+            {
+                ViewBag.user = user.ToString();
+
+                List<encuesta_mostrarPreguntas2CLS> list;
+                using (var db = new csstdura_encuestaEntities())
+                {
+                    //hacemos un select a nuestra tabla con los campos que queremos mostrar
+
+                    string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_n_usuario = '" + user + "'").FirstOrDefault();
+                    int id_usuario = db.Database.SqlQuery<int>("select usua_id from encuesta_usuarios where usua_n_usuario = '" + user + "'").FirstOrDefault();
+
+                    ViewBag.nombreEmpleado = nombreEmpleado;
+                    ViewBag.id_usuario = id_usuario;
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+                //return RedirectToAction("Reporting", "ReportManagement", new { area = "Admin" })
+            }
+
+
+
+        }
+
+        public ActionResult Agregar27()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Agregar27(encuesta_mostrarPreguntas2CLS Oencuesta_mostrarPreguntasCLS)
+        {
+
+            return RedirectToAction("Index", "Login");
+            //return Content("<script language='javascript' type='text/javascript'>alert('Gracias por contestar la encuesta.');window.location = '/Encuesta3/gracias?user=" + Usuario + " ';</script>");
 
         }
 
