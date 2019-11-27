@@ -142,3 +142,4 @@ C:\Users\papaj\source\repos\EncuestasV2\obj\Release\EncuestasV2.csprojAssemblyRe
 C:\Users\papaj\source\repos\EncuestasV2\obj\Release\EncuestasV2.csproj.CopyComplete
 C:\Users\papaj\source\repos\EncuestasV2\obj\Release\EncuestasV2.dll
 C:\Users\papaj\source\repos\EncuestasV2\obj\Release\EncuestasV2.pdb
+C:\Users\papaj\source\repos\EncuestasV2\bin\itextsharp.dll

@@ -26,7 +26,5 @@ namespace EncuestasV2.Models
         public virtual encuesta_empresa encuesta_empresa { get; set; }
         public virtual encuesta_encuesta encuesta_encuesta { get; set; }
         public virtual encuesta_usuarios encuesta_usuarios { get; set; }
-
-        public string usua_presento { get; set; }
     }
 }

@@ -42,6 +42,7 @@
     <Property Name="denc_valor_3" Type="nvarchar" MaxLength="3" />
     <Property Name="denc_valor_4" Type="nvarchar" MaxLength="3" />
     <Property Name="denc_valor_5" Type="nvarchar" MaxLength="3" />
+    <Property Name="denc_parte" Type="int" />
   </EntityType>
   <EntityType Name="encuesta_edades">
     <Key>
@@ -64,10 +65,16 @@
     <Property Name="emp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="emp_descrip" Type="nvarchar" MaxLength="200" />
     <Property Name="emp_estatus" Type="nvarchar" MaxLength="1" />
-    <Property Name="emp_u_alta" Type="nvarchar" MaxLength="20" />
+    <Property Name="emp_u_alta" Type="nvarchar" MaxLength="60" />
     <Property Name="emp_f_alta" Type="date" />
     <Property Name="emp_u_cancela" Type="nvarchar" MaxLength="20" />
     <Property Name="emp_f_cancela" Type="date" />
+    <Property Name="emp_no_trabajadores" Type="varchar" MaxLength="20" />
+    <Property Name="emp_direccion" Type="varchar" MaxLength="50" />
+    <Property Name="emp_telefono" Type="varchar" MaxLength="15" />
+    <Property Name="emp_person_contac" Type="nvarchar" MaxLength="200" />
+    <Property Name="emp_correo" Type="nvarchar" MaxLength="60" />
+    <Property Name="emp_cp" Type="varchar" MaxLength="8" />
   </EntityType>
   <EntityType Name="encuesta_encuesta">
     <Key>
@@ -155,7 +162,7 @@
     </Key>
     <Property Name="usua_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="usua_nombre" Type="nvarchar(max)" />
-    <Property Name="usua_empresa" Type="nvarchar(max)" />
+    <Property Name="usua_empresa" Type="int" />
     <Property Name="usua_f_aplica" Type="datetime2" Precision="7" />
     <Property Name="usua_tipo" Type="nvarchar(max)" />
     <Property Name="usua_estatus" Type="nvarchar(max)" />
@@ -183,6 +190,7 @@
     <Property Name="usua_rotacion_turno" Type="int" />
     <Property Name="usua_tiempo_puesto" Type="int" />
     <Property Name="usua_exp_laboral" Type="int" />
+    <Property Name="usua_presento" Type="char" MaxLength="3" />
   </EntityType>
   <Association Name="FK_encuesta_det_encuesta_encuesta_encuesta">
     <End Role="encuesta_encuesta" Type="Self.encuesta_encuesta" Multiplicity="0..1" />

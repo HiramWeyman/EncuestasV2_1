@@ -6,7 +6,7 @@
 <h2>Bienvenido: @ViewBag.nombreEmpleado</h2>
 @*<h2>Usuario-@ViewBag.Session</h2>*@
 
-@using (Html.BeginForm("Agregar11", "Encuesta3", FormMethod.Post, new { id = "Form" }))
+@using (Html.BeginForm("Agregar25", "Encuesta3", FormMethod.Post, new { id = "Form" }))
 {
     <h4> @ViewBag.encabezado</h4>
     @Html.TextBox("user", ViewBag.user as string, new { type = "hidden" })
@@ -42,52 +42,52 @@
         </thead>
     </table>
 
-        <table class="table" id="table_radios" style="display:none;">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>PREGUNTA</th>
-                    <th>SIEMPRE</th>
-                    <th>CASI SIEMPRE</th>
-                    <th>ALGUNAS VECES</th>
-                    <th>CASI NUNCA</th>
-                    <th>NUNCA</th>
-                </tr>
-            </thead>
-            <!-- Recorro el modelo para imprimir datos -->
-            @foreach (var elemento in Model)
-            {
-
-                if (elemento.denc_valor_3 != "N/A")
-                {
-                    <tr>
-
-                        <td>
-                            <input type="hidden" name="denc_id_@x" value="@elemento.denc_id" />@elemento.denc_id
-                            <input type="hidden" name="Valor_radio_@x" id="Valor_radio_@x" />
-                        </td>
-                        <td>@elemento.denc_descrip</td>
-
-
-                        <td><input class="radio" onclick="ValRadio1(@x);" type="radio" id="radio1_@x" name="radio_@x" value="@elemento.denc_valor_1" /></td>
-                        <td><input class="radio" onclick="ValRadio2(@x);" type="radio" id="radio2_@x" name="radio_@x" value="@elemento.denc_valor_2" /></td>
-                        <td><input class="radio" onclick="ValRadio3(@x);" type="radio" id="radio3_@x" name="radio_@x" value="@elemento.denc_valor_3" /></td>
-                        <td><input class="radio" onclick="ValRadio4(@x);" type="radio" id="radio4_@x" name="radio_@x" value="@elemento.denc_valor_4" /></td>
-                        <td><input class="radio" onclick="ValRadio5(@x);" type="radio" id="radio5_@x" name="radio_@x" value="@elemento.denc_valor_5" /></td>
-
-
-                    </tr>
-                }
-                x = x + 1;
-            }
+    <table class="table" id="table_radios" style="display:none;">
+        <thead class="thead-dark">
             <tr>
-                <td><input type="submit" value="Guardar" class="btn btn-primary" /></td>
+                <th>ID</th>
+                <th>PREGUNTA</th>
+                <th>SIEMPRE</th>
+                <th>CASI SIEMPRE</th>
+                <th>ALGUNAS VECES</th>
+                <th>CASI NUNCA</th>
+                <th>NUNCA</th>
             </tr>
-        </table>
+        </thead>
+        <!-- Recorro el modelo para imprimir datos -->
+        @foreach (var elemento in Model)
+        {
 
+            if (elemento.denc_valor_3 != "N/A")
+            {
+                <tr>
+
+                    <td>
+                        <input type="hidden" name="denc_id_@x" value="@elemento.denc_id" />@elemento.denc_id
+                        <input type="hidden" name="Valor_radio_@x" id="Valor_radio_@x" />
+                    </td>
+                    <td>@elemento.denc_descrip</td>
+
+
+                    <td><input class="radio" onclick="ValRadio1(@x);" type="radio" id="radio1_@x" name="radio_@x" value="@elemento.denc_valor_1" /></td>
+                    <td><input class="radio" onclick="ValRadio2(@x);" type="radio" id="radio2_@x" name="radio_@x" value="@elemento.denc_valor_2" /></td>
+                    <td><input class="radio" onclick="ValRadio3(@x);" type="radio" id="radio3_@x" name="radio_@x" value="@elemento.denc_valor_3" /></td>
+                    <td><input class="radio" onclick="ValRadio4(@x);" type="radio" id="radio4_@x" name="radio_@x" value="@elemento.denc_valor_4" /></td>
+                    <td><input class="radio" onclick="ValRadio5(@x);" type="radio" id="radio5_@x" name="radio_@x" value="@elemento.denc_valor_5" /></td>
+
+
+                </tr>
+            }
+            x = x + 1;
         }
+        <tr>
+            <td><input type="submit" value="Guardar" class="btn btn-primary" /></td>
+        </tr>
+    </table>
 
-        <script>
+}
+
+<script>
             function enabledRadios(Valor_radio) {
                 document.getElementById("Valor_radio").value = Valor_radio;
                 if (Valor_radio == "SI") {
@@ -115,7 +115,11 @@
                 document.getElementById("Valor_radio_" + valor_x).value = document.getElementById("radio5_" + valor_x).value;
             }
 
-        </script>
+</script>
+
+
+
+
 
 
 

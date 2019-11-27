@@ -30,6 +30,7 @@
     <EntitySetMapping Name="encuesta_det_encuesta">
       <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_det_encuesta">
         <MappingFragment StoreEntitySet="encuesta_det_encuesta">
+          <ScalarProperty Name="denc_parte" ColumnName="denc_parte" />
           <ScalarProperty Name="denc_id" ColumnName="denc_id" />
           <ScalarProperty Name="denc_encu_id" ColumnName="denc_encu_id" />
           <ScalarProperty Name="denc_descrip" ColumnName="denc_descrip" />
@@ -73,6 +74,12 @@
           <ScalarProperty Name="emp_f_alta" ColumnName="emp_f_alta" />
           <ScalarProperty Name="emp_u_cancela" ColumnName="emp_u_cancela" />
           <ScalarProperty Name="emp_f_cancela" ColumnName="emp_f_cancela" />
+          <ScalarProperty Name="emp_no_trabajadores" ColumnName="emp_no_trabajadores" />
+          <ScalarProperty Name="emp_direccion" ColumnName="emp_direccion" />
+          <ScalarProperty Name="emp_telefono" ColumnName="emp_telefono" />
+          <ScalarProperty Name="emp_person_contac" ColumnName="emp_person_contac" />
+          <ScalarProperty Name="emp_correo" ColumnName="emp_correo" />
+          <ScalarProperty Name="emp_cp" ColumnName="emp_cp" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -169,6 +176,7 @@
     <EntitySetMapping Name="encuesta_usuarios">
       <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_usuarios">
         <MappingFragment StoreEntitySet="encuesta_usuarios">
+          <ScalarProperty Name="usua_presento" ColumnName="usua_presento" />
           <ScalarProperty Name="usua_id" ColumnName="usua_id" />
           <ScalarProperty Name="usua_nombre" ColumnName="usua_nombre" />
           <ScalarProperty Name="usua_empresa" ColumnName="usua_empresa" />

@@ -44,6 +44,7 @@
     <Property Name="denc_valor_5" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="encuesta_encuesta" Relationship="Self.FK_encuesta_det_encuesta_encuesta_encuesta" FromRole="encuesta_det_encuesta" ToRole="encuesta_encuesta" />
     <NavigationProperty Name="encuesta_resultados" Relationship="Self.FK_encuesta_resultados_encuesta_det_encuesta" FromRole="encuesta_det_encuesta" ToRole="encuesta_resultados" />
+    <Property Name="denc_parte" Type="Int32" />
   </EntityType>
   <EntityType Name="encuesta_edades">
     <Key>
@@ -66,10 +67,16 @@
     <Property Name="emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="emp_descrip" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="emp_estatus" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-    <Property Name="emp_u_alta" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="emp_u_alta" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
     <Property Name="emp_f_alta" Type="DateTime" Precision="0" />
     <Property Name="emp_u_cancela" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="emp_f_cancela" Type="DateTime" Precision="0" />
+    <Property Name="emp_no_trabajadores" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="emp_direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="emp_telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="emp_person_contac" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="emp_correo" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="emp_cp" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="encuesta_resultados" Relationship="Self.FK_encuesta_resultados_encuesta_empresa" FromRole="encuesta_empresa" ToRole="encuesta_resultados" />
   </EntityType>
   <EntityType Name="encuesta_encuesta">
@@ -164,7 +171,7 @@
     </Key>
     <Property Name="usua_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="usua_nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="usua_empresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="usua_empresa" Type="Int32" />
     <Property Name="usua_f_aplica" Type="DateTime" Precision="7" />
     <Property Name="usua_tipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="usua_estatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -193,6 +200,7 @@
     <Property Name="usua_tiempo_puesto" Type="Int32" />
     <Property Name="usua_exp_laboral" Type="Int32" />
     <NavigationProperty Name="encuesta_resultados" Relationship="Self.FK_encuesta_resultados_encuesta_usuarios" FromRole="encuesta_usuarios" ToRole="encuesta_resultados" />
+    <Property Name="usua_presento" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
   </EntityType>
   <Association Name="FK_encuesta_det_encuesta_encuesta_encuesta">
     <End Role="encuesta_encuesta" Type="Self.encuesta_encuesta" Multiplicity="0..1" />
