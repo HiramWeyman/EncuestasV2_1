@@ -125,7 +125,7 @@ namespace EncuestasV2.Controllers
                         string tipo = "A";
                         string usuario = db.Database.SqlQuery<string>("Select usua_n_usuario from encuesta_usuarios where usua_n_usuario=@usuario and usua_p_usuario=@password and usua_tipo=@tipo", new SqlParameter("@usuario", nombre_usuario), new SqlParameter("@password", contraCifrada), new SqlParameter("@tipo", tipo))
                            .FirstOrDefault();
-                        Session["Usuario"] = usuario;
+                        Session["UsuarioAdmin"] = usuario;
                         Console.WriteLine(usuario);
                     }
 
