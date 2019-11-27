@@ -12,7 +12,7 @@ namespace EncuestasV2.Filters
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var usuario = HttpContext.Current.Session["UsuarioAmin"];
+            var usuario = HttpContext.Current.Session["UsuarioAdmin"];
             if (usuario == null)
             {
 
