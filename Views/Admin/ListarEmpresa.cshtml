@@ -10,7 +10,10 @@
     <div style="height:600px;overflow:auto;margin-left:10px;">
         <h2>Lista de Empresas</h2>
         @using (Html.BeginForm("ListarEmpresa", "Admin", FormMethod.Post))
-        {@Html.ActionLink("Agregar", "CatalogoEmpresa", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0" })<br />
+        {
+            @Html.ActionLink("Agregar", "CatalogoEmpresa", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0" })<span></span>
+            @Html.ActionLink("Generar PDF", "GenerarPDF", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0",@target="_blank" })<br />
+
         <b><label>Buscar empresa</label></b>
         <div class="row ml-1">
             @Html.TextBox("emp_descrip", null, new { @class = "form-control" })
@@ -73,7 +76,7 @@
         </div>
     }
 
-        <div>
-            @Html.ActionLink("Regresar al Menu", "Index")
-        </div>
+    <div>
+        @Html.ActionLink("Regresar al Menu", "Index")
+    </div>
     </div>

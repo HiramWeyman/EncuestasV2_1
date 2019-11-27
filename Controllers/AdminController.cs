@@ -10,6 +10,9 @@ using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
+using iTextSharp.text;
+using System.IO;
+using iTextSharp.text.pdf;
 
 namespace EncuestasV2.Controllers
 {
@@ -30,8 +33,107 @@ namespace EncuestasV2.Controllers
         List<SelectListItem> listaTiempo;
         List<SelectListItem> listaExpLab;
 
-        //Catalogos
+        //Generar Reportes en PDF
+        public FileResult GenerarPDF() 
+        {
+            Document doc = new Document(iTextSharp.text.PageSize.A4_LANDSCAPE,5,5,0,0);
+            Byte[] buffer;
 
+            using (MemoryStream ms =new MemoryStream()) {
+
+                PdfWriter.GetInstance(doc,ms);
+                doc.Open();
+                Paragraph title = new Paragraph("Listado de Empresas");
+                title.Alignment = Element.ALIGN_CENTER;
+                doc.Add(title);
+
+                Paragraph espacio = new Paragraph(" ");
+                doc.Add(espacio);
+
+                //Creando la tabla
+                PdfPTable tabla = new PdfPTable(8);
+                tabla.WidthPercentage = 100f;
+                //Asignando los anchos de las columnas
+                float[] valores = new float[8] { 10,40,20,20,30,40,40,30};
+                tabla.SetWidths(valores);
+
+                //Creando celdas agregando contenido
+                PdfPCell celda1 = new PdfPCell(new Phrase("ID"));
+                celda1.BackgroundColor = new BaseColor(130,130,130);
+                celda1.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                tabla.AddCell(celda1);
+                
+                PdfPCell celda2 = new PdfPCell(new Phrase("Descripción"));
+                celda2.BackgroundColor = new BaseColor(130, 130, 130);
+                celda2.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                tabla.AddCell(celda2);
+
+                PdfPCell celda3 = new PdfPCell(new Phrase("Estatus"));
+                celda3.BackgroundColor = new BaseColor(130, 130, 130);
+                celda3.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                tabla.AddCell(celda3);
+
+                PdfPCell celda4 = new PdfPCell(new Phrase("Emp"));
+                celda4.BackgroundColor = new BaseColor(130, 130, 130);
+                celda4.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                tabla.AddCell(celda4);
+
+                PdfPCell celda5 = new PdfPCell(new Phrase("Dirección"));
+                celda5.BackgroundColor = new BaseColor(130, 130, 130);
+                celda5.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                tabla.AddCell(celda5);
+
+                PdfPCell celda6 = new PdfPCell(new Phrase("Telefono"));
+                celda6.BackgroundColor = new BaseColor(130, 130, 130);
+                celda6.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                tabla.AddCell(celda6);
+
+                PdfPCell celda7 = new PdfPCell(new Phrase("Contacto"));
+                celda7.BackgroundColor = new BaseColor(130, 130, 130);
+                celda7.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                tabla.AddCell(celda7);
+
+                PdfPCell celda8 = new PdfPCell(new Phrase("Correo"));
+                celda8.BackgroundColor = new BaseColor(130, 130, 130);
+                celda8.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                tabla.AddCell(celda8);
+
+                //Poniendo datos en la la tabla
+                List<encuesta_empresaCLS>listaEmp= (List<encuesta_empresaCLS>)Session["ListaEmp"];
+                int nroregistros = listaEmp.Count();
+                for (int i = 0; i < nroregistros; i++) {
+                    tabla.AddCell(listaEmp[i].emp_id.ToString());
+                    tabla.AddCell(listaEmp[i].emp_descrip);
+                    tabla.AddCell(listaEmp[i].emp_estatus);
+                    tabla.AddCell(listaEmp[i].emp_no_trabajadores);
+                    tabla.AddCell(listaEmp[i].emp_direccion);
+                    tabla.AddCell(listaEmp[i].emp_telefono);
+                    tabla.AddCell(listaEmp[i].emp_person_contac);
+                    tabla.AddCell(listaEmp[i].emp_correo);
+
+
+                }
+                //Agregando la tabla al documento
+                doc.Add(tabla);
+                doc.Close();
+
+                buffer = ms.ToArray();
+            
+            }
+                return File(buffer,"application/pdf");
+        
+        }
+
+
+
+
+
+
+
+
+
+
+        //Catalogos
         private void llenarEmpresa()
         {
             using (var db = new csstdura_encuestaEntities())
@@ -533,6 +635,7 @@ namespace EncuestasV2.Controllers
                                         emp_correo = empresa.emp_correo,
                                         emp_cp = empresa.emp_cp
                                     }).ToList();
+                    Session["ListaEmp"] = listaEmpresa;
                 }
                 else
                 {
@@ -555,7 +658,7 @@ namespace EncuestasV2.Controllers
                                         emp_correo = empresa.emp_correo,
                                         emp_cp = empresa.emp_cp
                                     }).ToList();
-
+                    Session["ListaEmp"] = listaEmpresa;
                 }
 
             }
