@@ -214,3 +214,4 @@ C:\Users\ADMIN\source\repos\EncuestasV2\obj\Debug\EncuestasV2.csproj.CopyComplet
 C:\Users\ADMIN\source\repos\EncuestasV2\obj\Debug\EncuestasV2.dll
 C:\Users\ADMIN\source\repos\EncuestasV2\obj\Debug\EncuestasV2.pdb
 C:\Users\papaj\source\repos\EncuestasV2\obj\Debug\EncuestasV2.csprojAssemblyReference.cache
+C:\Users\papaj\source\repos\EncuestasV2\bin\itextsharp.dll

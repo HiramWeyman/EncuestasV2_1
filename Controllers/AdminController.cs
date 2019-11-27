@@ -767,7 +767,7 @@ namespace EncuestasV2.Controllers
             ViewBag.listaExpLab = listaExpLab;
 
             encuesta_usuariosCLS Oencuesta_usuarioCLS = new encuesta_usuariosCLS();
-         
+
             using (var db = new csstdura_encuestaEntities())
             {
 
