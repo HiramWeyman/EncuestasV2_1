@@ -2739,6 +2739,11 @@ namespace EncuestasV2.Controllers
                                 res = db.SaveChanges();
                             }
                         }
+                        int id_user = int.Parse(Request.Form["id_usuario"]);
+
+                        encuesta_usuarios Oencuesta_usuarios = db.encuesta_usuarios.Where(p => p.usua_id.Equals(id_user)).First();
+                        Oencuesta_usuarios.usua_presento = "S";
+                        res = db.SaveChanges();
 
                         transaction.Complete();
                     }
@@ -2759,7 +2764,7 @@ namespace EncuestasV2.Controllers
                     if (res == 1)
                     {
 
-                        return Content("<script language='javascript' type='text/javascript'>alert('Gracias por contestar la encuesta.');window.location = '/Encuesta3/gracias?user=" + Usuario + " ';</script>");
+                        return Content("<script language='javascript' type='text/javascript'>window.location = '/Encuesta3/Index27?user=" + Usuario + " ';</script>");
 
                     }
                     else

@@ -72,6 +72,7 @@ namespace EncuestasV2.Controllers
         {
             String Usuario = Request.Form["user"];
             int res = 0;
+            int bandera = 0;
             using (var db = new csstdura_encuestaEntities())
             {
                 using (var transaction = new TransactionScope())
@@ -87,6 +88,10 @@ namespace EncuestasV2.Controllers
                             resultado.resu_denc_id = int.Parse(Request.Form["denc_id_" + x]);//Oencuesta_mostrarPreguntasCLS.denc_id;
                             resultado.resu_usua_id = int.Parse(Request.Form["id_usuario"]);
                             resultado.resu_resultado = Request.Form["Valor_radio_"+x];
+                            if (Request.Form["Valor_radio_" + x].Equals("SI"))
+                            {
+                                bandera = 1;
+                            }
                             resultado.resu_fecha = DateTime.Now;
                             db.encuesta_resultados.Add(resultado);
                             res = db.SaveChanges();
@@ -110,8 +115,15 @@ namespace EncuestasV2.Controllers
                     }
                     if (res == 1)
                     {
-
-                        return Content("<script language='javascript' type='text/javascript'>alert('Registro exitoso!');window.location = '/Encuesta2/Index?user=" + Usuario + " ';</script>");
+                        if (bandera == 1)
+                        {
+                            return Content("<script language='javascript' type='text/javascript'>alert('Registro exitoso!');window.location = '/Encuesta2/Index?user=" + Usuario + " ';</script>");
+                        }
+                        else
+                        {
+                            return Content("<script language='javascript' type='text/javascript'>alert('Registro exitoso!');window.location = '/Encuesta3/Index5?user=" + Usuario + " ';</script>");
+                        }
+                        
                     }
                     else
                     {
