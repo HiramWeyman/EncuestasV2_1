@@ -13,6 +13,9 @@ using System.Text;
 using iTextSharp.text;
 using System.IO;
 using iTextSharp.text.pdf;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System.Drawing;
 
 namespace EncuestasV2.Controllers
 {
@@ -32,6 +35,72 @@ namespace EncuestasV2.Controllers
         List<SelectListItem> listaRotacion;
         List<SelectListItem> listaTiempo;
         List<SelectListItem> listaExpLab;
+
+        //Generar Rportes en Excel
+        public FileResult generarExcelByte() 
+        {
+
+            byte[] buffer;
+            using (MemoryStream ms = new MemoryStream())
+            {   
+                //Todo el documento excel
+                ExcelPackage ep = new ExcelPackage();
+                //Crear una hoja
+                ep.Workbook.Worksheets.Add("Reporte de Empresas");
+                ExcelWorksheet ew = ep.Workbook.Worksheets[1];
+
+                //Ponemos nombres de las columnas
+                ew.Cells[1, 1].Value = "ID";
+                ew.Cells[1, 2].Value = "Descripción";
+                ew.Cells[1, 3].Value = "Estatus";
+                ew.Cells[1, 4].Value = "Empleados";
+                ew.Cells[1, 5].Value = "Dirección";
+                ew.Cells[1, 6].Value = "Telefono";
+                ew.Cells[1, 7].Value = "Contacto";
+                ew.Cells[1, 8].Value = "Correo";
+                ew.Cells[1, 9].Value = "C.P.";
+
+                ew.Column(1).Width = 10;
+                ew.Column(2).Width = 50;
+                ew.Column(3).Width = 10;
+                ew.Column(4).Width = 10;
+                ew.Column(5).Width = 50;
+                ew.Column(6).Width = 40;
+                ew.Column(7).Width = 40;
+                ew.Column(8).Width = 40;
+                ew.Column(9).Width = 10;
+
+                using (var range = ew.Cells[1,1,1,9]) 
+                {
+                    range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    range.Style.Font.Color.SetColor(Color.White);
+                    range.Style.Fill.BackgroundColor.SetColor(Color.DarkRed);
+                }
+
+                List<encuesta_empresaCLS> listaEmp = (List<encuesta_empresaCLS>)Session["ListaEmp"];
+                int nroregistros = listaEmp.Count();
+                for (int i = 0; i < nroregistros; i++)
+                {
+                    ew.Cells[i + 2, 1].Value = listaEmp[i].emp_id;
+                    ew.Cells[i + 2, 2].Value = listaEmp[i].emp_descrip;
+                    ew.Cells[i + 2, 3].Value = listaEmp[i].emp_estatus;
+                    ew.Cells[i + 2, 4].Value = listaEmp[i].emp_no_trabajadores;
+                    ew.Cells[i + 2, 5].Value = listaEmp[i].emp_direccion;
+                    ew.Cells[i + 2, 6].Value = listaEmp[i].emp_telefono;
+                    ew.Cells[i + 2, 7].Value = listaEmp[i].emp_person_contac;
+                    ew.Cells[i + 2, 8].Value = listaEmp[i].emp_correo;
+                    ew.Cells[i + 2, 9].Value = listaEmp[i].emp_cp;
+                }
+                ep.SaveAs(ms);
+                buffer=ms.ToArray();
+            }
+
+            return File(buffer,"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+         }
+
+
+
 
         //Generar Reportes en PDF
         public FileResult GenerarPDF() 
@@ -110,8 +179,6 @@ namespace EncuestasV2.Controllers
                     tabla.AddCell(listaEmp[i].emp_telefono);
                     tabla.AddCell(listaEmp[i].emp_person_contac);
                     tabla.AddCell(listaEmp[i].emp_correo);
-
-
                 }
                 //Agregando la tabla al documento
                 doc.Add(tabla);
