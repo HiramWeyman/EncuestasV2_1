@@ -1159,7 +1159,7 @@ namespace EncuestasV2.Controllers
                     if (res == 1)
                     {
 
-                        return Content("<script language='javascript' type='text/javascript'>alert('Registro exitoso!');window.location = '/Encuesta3/Index13?user=" + Usuario + " ';</script>");
+                        return Content("<script language='javascript' type='text/javascript'>alert('Registro exitoso!');window.location = '/Encuesta3/Index27?user=" + Usuario + " ';</script>");
 
                     }
                     else
