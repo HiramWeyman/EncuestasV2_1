@@ -37,6 +37,127 @@ namespace EncuestasV2.Controllers
         List<SelectListItem> listaExpLab;
 
         //Generar Rportes en Excel
+        public FileResult generarExcelEmpleados()
+        {
+
+            byte[] buffer;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                //Todo el documento excel
+                ExcelPackage ep = new ExcelPackage();
+                //Crear una hoja
+                ep.Workbook.Worksheets.Add("Reporte de Empleados");
+                ExcelWorksheet ew = ep.Workbook.Worksheets[1];
+
+                //Ponemos nombres de las columnas
+                ew.Cells[1, 1].Value = "ID";
+                ew.Cells[1, 2].Value = "Nombre";
+                ew.Cells[1, 3].Value = "Empresa";
+                ew.Cells[1, 4].Value = "Fecha de aplicación";
+                ew.Cells[1, 5].Value = "Estatus";
+                ew.Cells[1, 6].Value = "Nombre de usuario";
+                ew.Cells[1, 7].Value = "Fecha de Alta";
+                ew.Cells[1, 8].Value = "Fecha de cancelación";
+                ew.Cells[1, 9].Value = "Genero";
+                ew.Cells[1, 10].Value = "Edad";
+                ew.Cells[1, 11].Value = "Estado Civil";
+                ew.Cells[1, 12].Value = "Sin formación";
+                ew.Cells[1, 13].Value = "Primaria";
+                ew.Cells[1, 14].Value = "Secunadaria";
+                ew.Cells[1, 15].Value = "Preparatoria";
+                ew.Cells[1, 16].Value = "Técnico";
+                ew.Cells[1, 17].Value = "Licenciatura";
+                ew.Cells[1, 18].Value = "Maestría";
+                ew.Cells[1, 19].Value = "Doctorado";
+                ew.Cells[1, 20].Value = "Tipo de puesto";
+                ew.Cells[1, 21].Value = "Tipo de contratación";
+                ew.Cells[1, 22].Value = "Tipo de personal ";
+                ew.Cells[1, 23].Value = "Tipo de jornada";
+                ew.Cells[1, 24].Value = "Rotación de turno";
+                ew.Cells[1, 25].Value = "Tiempo en puesto";
+                ew.Cells[1, 26].Value = "Experiencia laboral";
+                ew.Cells[1, 27].Value = "Presento Encuesta";
+
+                ew.Column(1).Width = 10;
+                ew.Column(2).Width = 30;
+                ew.Column(3).Width = 30;
+                ew.Column(4).Width = 30;
+                ew.Column(5).Width = 10;
+                ew.Column(6).Width = 30;
+                ew.Column(7).Width = 30;
+                ew.Column(8).Width = 30;
+                ew.Column(9).Width = 10;
+                ew.Column(10).Width = 10;
+                ew.Column(11).Width = 10;
+                ew.Column(12).Width = 10;
+                ew.Column(13).Width = 20;
+                ew.Column(14).Width = 20;
+                ew.Column(15).Width = 20;
+                ew.Column(16).Width = 20;
+                ew.Column(17).Width = 20;
+                ew.Column(18).Width = 20;
+                ew.Column(19).Width = 20;
+                ew.Column(20).Width = 20;
+                ew.Column(21).Width = 40;
+                ew.Column(22).Width = 40;
+                ew.Column(23).Width = 50;
+                ew.Column(24).Width = 10;
+                ew.Column(25).Width = 20;
+                ew.Column(26).Width = 20;
+                ew.Column(27).Width = 30;
+
+                using (var range = ew.Cells[1, 1, 1, 27])
+                {
+                    range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    range.Style.Font.Color.SetColor(Color.White);
+                    range.Style.Fill.BackgroundColor.SetColor(Color.DarkRed);
+                }
+
+                List<encuesta_usuariosCLS> listaUser = (List<encuesta_usuariosCLS>)Session["ListaUser"];
+                int nroregistros = listaUser.Count();
+                for (int i = 0; i < nroregistros; i++)
+                {
+                    ew.Cells[i + 2, 1].Value = listaUser[i].usua_id;
+                    ew.Cells[i + 2, 2].Value = listaUser[i].usua_nombre;
+                    ew.Cells[i + 2, 3].Value = listaUser[i].empleado_empresa;
+                    ew.Cells[i + 2, 4].Style.Numberformat.Format = "yyyy-mm-dd";
+                    ew.Cells[i + 2, 4].Value = listaUser[i].usua_f_aplica;
+                    ew.Cells[i + 2, 5].Value = listaUser[i].usua_estatus;
+                    ew.Cells[i + 2, 6].Value = listaUser[i].usua_n_usuario;
+                    ew.Cells[i + 2, 7].Style.Numberformat.Format = "yyyy-mm-dd";
+                    ew.Cells[i + 2, 7].Value = listaUser[i].usua_f_alta;
+                    ew.Cells[i + 2, 8].Style.Numberformat.Format = "yyyy-mm-dd";
+                    ew.Cells[i + 2, 8].Value = listaUser[i].usua_f_cancela;
+                    ew.Cells[i + 2, 9].Value = listaUser[i].empleado_genero;
+                    ew.Cells[i + 2, 10].Value = listaUser[i].empleado_edad;
+                    ew.Cells[i + 2, 11].Value = listaUser[i].empleado_edocivil;
+                    ew.Cells[i + 2, 12].Value = listaUser[i].empleado_sinformacion;
+                    ew.Cells[i + 2, 13].Value = listaUser[i].empleado_primaria;
+                    ew.Cells[i + 2, 14].Value = listaUser[i].empleado_secundaria;
+                    ew.Cells[i + 2, 15].Value = listaUser[i].empleado_preparatoria;
+                    ew.Cells[i + 2, 16].Value = listaUser[i].empleado_tecnico;
+                    ew.Cells[i + 2, 17].Value = listaUser[i].empleado_licenciatura;
+                    ew.Cells[i + 2, 18].Value = listaUser[i].empleado_maestria;
+                    ew.Cells[i + 2, 19].Value = listaUser[i].empleado_doctorado;
+                    ew.Cells[i + 2, 20].Value = listaUser[i].empleado_tipopuesto;
+                    ew.Cells[i + 2, 21].Value = listaUser[i].empleado_tipocontata;
+                    ew.Cells[i + 2, 22].Value = listaUser[i].empleado_tipopersonal;
+                    ew.Cells[i + 2, 23].Value = listaUser[i].empleado_tipojornada;
+                    ew.Cells[i + 2, 24].Value = listaUser[i].empleado_rotacion;
+                    ew.Cells[i + 2, 25].Value = listaUser[i].empleado_tiempopuesto;
+                    ew.Cells[i + 2, 26].Value = listaUser[i].empleado_explab;
+                    ew.Cells[i + 2, 27].Value = listaUser[i].usua_presento;
+                }
+                ep.SaveAs(ms);
+                buffer = ms.ToArray();
+            }
+
+            return File(buffer, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+        }
+
+
+
         public FileResult generarExcelByte() 
         {
 
@@ -506,13 +627,17 @@ namespace EncuestasV2.Controllers
                                  {
                                      usua_id = empleado.usua_id,
                                      usua_nombre = empleado.usua_nombre,
+                                     usua_f_aplica=(DateTime)empleado.usua_f_aplica,
                                      usua_estatus = empleado.usua_estatus,
                                      usua_n_usuario = empleado.usua_n_usuario,
                                      usua_p_usuario = empleado.usua_p_usuario,
+                                     usua_f_alta=(DateTime)empleado.usua_f_alta,
+                                     usua_f_cancela=empleado.usua_f_cancela,
                                      usua_empresa = (int)empleado.usua_empresa,
                                      usua_genero = (int)empleado.usua_genero,
                                      usua_edad = (int)empleado.usua_edad,
                                      usua_edo_civil = (int)empleado.usua_edo_civil,
+                                     usua_presento=empleado.usua_presento,
                                      empleado_empresa = empresa.emp_descrip,
                                      empleado_genero = genero.sexo_desc,
                                      empleado_edad = edad_emp.edad_desc,
@@ -534,65 +659,77 @@ namespace EncuestasV2.Controllers
                                      empleado_explab = exp.explab_desc
 
                                  }).ToList();
+                Session["ListaUser"] = listaEmpleado;
                 if (empleados_.usua_id == 0 && empleados_.usua_empresa == 0 && empleados_.usua_genero == 0 && empleados_.usua_edad == 0 && empleados_.usua_edo_civil == 0
                     && empleados_.usua_tipo_puesto == 0 && empleados_.usua_tipo_contratacion == 0 && empleados_.usua_tipo_personal == 0
                     && empleados_.usua_tipo_jornada == 0 && empleados_.usua_tiempo_puesto == 0 && empleados_.usua_exp_laboral == 0)
                 {
 
                     listaRpta = listaEmpleado;
+                    Session["ListaUser"] = listaEmpleado;
                 }
                 else
                 {
                     if (empleados_.usua_empresa != 0)
                     {
                         listaEmpleado = listaEmpleado.Where(p => p.usua_empresa.Equals(empleados_.usua_empresa)).ToList();
+                        Session["ListaUser"] = listaEmpleado;
                     }
 
                     if (empleados_.usua_genero != 0)
                     {
                         listaEmpleado = listaEmpleado.Where(p => p.usua_genero.ToString().Contains(empleados_.usua_genero.ToString())).ToList();
+                        Session["ListaUser"] = listaEmpleado;
                     }
 
                     if (empleados_.usua_edad != 0)
                     {
                         listaEmpleado = listaEmpleado.Where(p => p.usua_edad.ToString().Contains(empleados_.usua_edad.ToString())).ToList();
+                        Session["ListaUser"] = listaEmpleado;
                     }
 
                     if (empleados_.usua_edo_civil != 0)
                     {
                         listaEmpleado = listaEmpleado.Where(p => p.usua_edo_civil.ToString().Contains(empleados_.usua_edo_civil.ToString())).ToList();
+                        Session["ListaUser"] = listaEmpleado;
                     }
 
                     if (empleados_.usua_tipo_puesto != 0)
                     {
                         listaEmpleado = listaEmpleado.Where(p => p.usua_tipo_puesto.ToString().Contains(empleados_.usua_tipo_puesto.ToString())).ToList();
+                        Session["ListaUser"] = listaEmpleado;
                     }
 
                     if (empleados_.usua_tipo_contratacion != 0)
                     {
                         listaEmpleado = listaEmpleado.Where(p => p.usua_tipo_contratacion.ToString().Contains(empleados_.usua_tipo_contratacion.ToString())).ToList();
+                        Session["ListaUser"] = listaEmpleado;
                     }
 
                     if (empleados_.usua_tipo_personal != 0)
                     {
                         listaEmpleado = listaEmpleado.Where(p => p.usua_tipo_personal.ToString().Contains(empleados_.usua_tipo_personal.ToString())).ToList();
+                        Session["ListaUser"] = listaEmpleado;
                     }
 
                     if (empleados_.usua_tipo_jornada != 0)
                     {
                         listaEmpleado = listaEmpleado.Where(p => p.usua_tipo_jornada.ToString().Contains(empleados_.usua_tipo_jornada.ToString())).ToList();
+                        Session["ListaUser"] = listaEmpleado;
                     }
 
                     if (empleados_.usua_tiempo_puesto != 0)
                     {
                         listaEmpleado = listaEmpleado.Where(p => p.usua_tiempo_puesto.ToString().Contains(empleados_.usua_tiempo_puesto.ToString())).ToList();
+                        Session["ListaUser"] = listaEmpleado;
                     }
 
                     if (empleados_.usua_exp_laboral != 0)
                     {
                         listaEmpleado = listaEmpleado.Where(p => p.usua_exp_laboral.ToString().Contains(empleados_.usua_exp_laboral.ToString())).ToList();
+                        Session["ListaUser"] = listaEmpleado;
                     }
-
+                    Session["ListaUser"] = listaEmpleado;
                     listaRpta = listaEmpleado;
 
                 }

@@ -110,6 +110,8 @@ namespace EncuestasV2.Models
 
         public int usua_exp_laboral { get; set; }
 
+        public string usua_presento { get; set; }
+
         ///propiedades adicionales////
         public string empleado_empresa { get; set; }
         public string empleado_genero { get; set; }

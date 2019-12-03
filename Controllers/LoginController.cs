@@ -53,12 +53,12 @@ namespace EncuestasV2.Controllers
                 {
 
                     int numeroVeces = db.encuesta_usuarios.Where(p => p.usua_n_usuario == nombre_usuario
-                                      && p.usua_p_usuario == contraCifrada).Count();
+                                      && p.usua_p_usuario == contraCifrada && p.usua_presento=="N").Count();
       
                     mensaje = numeroVeces.ToString();
                     if (mensaje == "0")
                     {
-                        mensaje = "Usuario o contraseña Incorrecto";
+                        mensaje = "Usuario o contraseña Incorrecto o es posible que ya haya realizado la encuesta";
                     }
                     else {
                         string usuario = db.Database.SqlQuery<string>("Select usua_n_usuario from encuesta_usuarios where usua_n_usuario=@usuario and usua_p_usuario=@password", new SqlParameter("@usuario", nombre_usuario), new SqlParameter("@password", contraCifrada))
